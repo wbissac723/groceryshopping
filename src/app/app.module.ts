@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { GroceryFormComponent } from './grocery-form/grocery-form.component';
 import { GroceryListComponent } from './grocery-list/grocery-list.component';
+import { GroceryService } from './services/grocery-api/grocery.service';
 
 
 @NgModule({
@@ -14,9 +15,12 @@ import { GroceryListComponent } from './grocery-list/grocery-list.component';
     GroceryListComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    GroceryService
+  ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

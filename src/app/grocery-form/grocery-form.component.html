@@ -1,7 +1,13 @@
 <form>
-  <div class="form-group">
-    <input type="text" class="form-control" id="groceryItem" aria-describedby="emailHelp" placeholder="Enter a grocery item">
+  <div *ngIf="!isSubmitting" class="form-group">
+    <input type="text" class="form-control text-box" id="groceryItem" aria-describedby="emailHelp" placeholder="Enter a grocery item">
   </div>
 
-  <button type="submit" class="btn btn-primary">Add Item</button>
+<div class="spinner-div" *ngIf="isSubmitting">
+  <i class="fa fa-spinner fa-spin" style="font-size:70px; color:rgb(84, 219, 21)"></i>
+</div>
+
+
+
+  <button type="submit" class="btn btn-primary add-btn" (click)="addGroceryItem()">Add Item</button>
 </form>

@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GroceryFormComponent implements OnInit {
 
+  public isSubmitting = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  addGroceryItem() {
+    this.isSubmitting = true;
   }
 
 }

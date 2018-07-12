@@ -12,11 +12,11 @@ import { GroceryService } from '../services/grocery-api/grocery.service';
 })
 export class GroceryFormComponent implements OnInit {
 
-  groceryForm: FormGroup;
-  isSubmitting = false;
-  groceryItem;
+  public groceryForm: FormGroup;
+  public groceryList = [];
+  public groceryItem;
 
-  constructor(private fb: FormBuilder, private groceryService: GroceryService) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.buildForm();
@@ -27,24 +27,12 @@ export class GroceryFormComponent implements OnInit {
   }
 
   addGroceryItem() {
-    this.isSubmitting = true;
+
     this.groceryItem = this.groceryForm.get('name').value;
 
-    this.groceryService.addGroceryItem(this.groceryItem)
-      .subscribe(
-        (result) => this.handleAddGroceryItemSuccess(result),
-        (err) => this.handleAddGroceryItemFail(err)
-      );
+    this.groceryList.push(this.groceryItem);
+    this.groceryForm.reset();
 
-    console.log(`Adding ${this.groceryItem} to the grocery list.`);
-  }
-
-  handleAddGroceryItemSuccess(result: any) {
-    this.isSubmitting = false;
-  }
-
-  handleAddGroceryItemFail(err: any) {
-    this.isSubmitting = false;
   }
 
 }

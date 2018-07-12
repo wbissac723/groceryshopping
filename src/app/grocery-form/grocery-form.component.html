@@ -20,3 +20,9 @@
           [disabled]="isSubmitting">Add Item
   </button>
 </form>
+
+<div class="grocery-list">
+    <li *ngFor="let item of groceryList; let i = index" class="grocery-items">
+      <strong>{{i + 1}}.</strong> {{item}}
+    </li>
+  </div>

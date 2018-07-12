@@ -26,3 +26,11 @@
       <strong>{{i + 1}}.</strong> {{item}}
     </li>
   </div>
+
+  <div *ngIf="groceryList && groceryList.length > 2" class="create-list-btn-div">
+      <button  type="submit" 
+      class="btn btn-primary create-btn" 
+      (click)="buildGroceryList()"
+      [disabled]="isSubmitting">Create List
+</button>
+  </div>

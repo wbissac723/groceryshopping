@@ -1,6 +1,7 @@
-<div *ngIf="!isLoading">
-    <li *ngFor="let grocery of groceries" class="grocery-items">
-        {{grocery.name}},
+<div *ngIf="!isLoading" class="grocery-list">
+    <li *ngFor="let grocery of groceries; let i = index"  class="grocery-items">
+       <strong> {{i + 1}}.</strong>
+        {{grocery.name}}
       </li>
 </div>
 

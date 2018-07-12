@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class GroceryListComponent implements OnInit {
   public groceries = [];
+  public isLoading;
 
   constructor(private groceryService: GroceryService) { }
 
@@ -18,11 +19,21 @@ export class GroceryListComponent implements OnInit {
   }
 
   getGroceryList(): Subscription {
+    this.isLoading = true;
     return this.groceryService.getGroceries()
       .subscribe(
-        (res) => this.groceries = res,
-        (err) => console.log(err)
+        (result) => this.handleGetGroceryListSuccess(result),
+        (err) => this.handleGetGroceryListFailure(err),
+        () => this.isLoading = false
       );
+  }
+
+  handleGetGroceryListSuccess(result) {
+    this.groceries = result;
+  }
+
+  handleGetGroceryListFailure(err) {
+    console.log(err);
   }
 }
 

@@ -1,3 +1,10 @@
-<li *ngFor="let grocery of groceries" class="grocery-items">
-  {{grocery.name}},
-</li>
+<div *ngIf="!isLoading">
+    <li *ngFor="let grocery of groceries" class="grocery-items">
+        {{grocery.name}},
+      </li>
+</div>
+
+
+<div class="spinner-div" *ngIf="isLoading">
+    <i class="fa fa-spinner fa-spin" style="font-size:70px; color:rgb(235, 50, 17)"></i>
+  </div>

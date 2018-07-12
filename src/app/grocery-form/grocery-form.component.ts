@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
+import { Observable } from 'rxjs/Observable';
+
 import { GroceryService } from '../services/grocery-api/grocery.service';
 
 @Component({
@@ -25,18 +27,23 @@ export class GroceryFormComponent implements OnInit {
   }
 
   addGroceryItem() {
+    this.isSubmitting = true;
     this.groceryItem = this.groceryForm.get('name').value;
 
-    this.groceryService.addGroceryItem(this.groceryItem);
+    this.groceryService.addGroceryItem(this.groceryItem)
+      .subscribe(
+        (result) => this.handleAddGroceryItemSuccess(result),
+        (err) => this.handleAddGroceryItemFail(err)
+      );
 
     console.log(`Adding ${this.groceryItem} to the grocery list.`);
   }
 
-  handleAddGroceryItemSuccess() {
+  handleAddGroceryItemSuccess(result: any) {
     this.isSubmitting = false;
   }
 
-  handleAddGroceryItemFail() {
+  handleAddGroceryItemFail(err: any) {
     this.isSubmitting = false;
   }
 

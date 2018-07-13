@@ -5,33 +5,38 @@ import { Observable } from 'rxjs/Observable';
 
 import { GroceryService } from '../services/grocery-api/grocery.service';
 
+
 @Component({
   selector: 'app-grocery-form',
   templateUrl: './grocery-form.component.html',
   styleUrls: ['./grocery-form.component.css']
 })
+
 export class GroceryFormComponent implements OnInit {
 
   public groceryForm: FormGroup;
   public groceryList = [];
-  public groceryItem;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private groceryStoreService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.buildForm();
   }
 
-  buildForm() {
+  buildForm(): void {
     this.groceryForm = this.fb.group({ name: '' });
   }
 
-  addGroceryItem() {
+  get groceryItem() {
+    return this.groceryForm.get('name').value;
+  }
 
-    this.groceryItem = this.groceryForm.get('name').value;
-
+  addGroceryItem(): void {
     this.groceryList.push(this.groceryItem);
     this.groceryForm.reset();
+  }
+
+  createGroceryList(): void {
 
   }
 

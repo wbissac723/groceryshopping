@@ -14,7 +14,7 @@
     border-color: rgb(57, 17, 235);
     width: 90%;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 30px auto 0 auto;
     
 }
 
@@ -32,8 +32,4 @@
 .grocery-list {
     width: 90%;
     margin: 30px auto;
-}
-
-.create-list-btn-div {
-    margin: 20px 0 0 0;
 }
